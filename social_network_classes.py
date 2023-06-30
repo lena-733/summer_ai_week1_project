@@ -38,7 +38,9 @@ class SocialNetwork:
         self.list_of_usernames[index] = newName
         print(str(self.list_of_usernames))
     
-    def main_user(self,username):
+    def main_user(self, username):
+        index = self.list_of_usernames.index(username)
+        currentuser = self.list_of_people[index]
         return currentuser
 
 
@@ -50,12 +52,9 @@ class Person:
         self.friendlistUsernames = []
         self.inbox = []
 
-    def add_friend(self, person_object):
-        print(str(self.list_of_usernames))
-        friendIndex = self.list_of_usernames.index(person_object)
-        newFriendPerson = self.list_of_people[friendIndex]
+    def add_friend(self, newFriendPerson, newFriendUsername):
         self.friendlist.append(newFriendPerson)
-        self.friendlistUsernames.append(person_object)
+        self.friendlistUsernames.append(newFriendUsername)
         print(str(self.friendlistUsernames))
 
 

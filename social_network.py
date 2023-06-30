@@ -23,13 +23,14 @@ if __name__ == "__main__":
             
 
         elif choice == "2":
+            mainUsername = input("Hey what's your username?\n")
+            CurrentUser = ai_social_network.main_user(mainUsername)
             inner_menu_choice = social_network_ui.manageAccountMenu()
             #Handle inner menu here
-            CurrentUser = ai_social_network.main_user()
-            #EDDDIITTTT HERERERER
 
+            
             while True:
-                if inner_menu_choice == "5":
+                if inner_menu_choice == "7":
                     break
                 elif inner_menu_choice == "1":
                     username =input("\nYou are now editing an account\nWhat is your username\n")
@@ -38,8 +39,38 @@ if __name__ == "__main__":
                     inner_menu_choice = social_network_ui.manageAccountMenu()
                 elif inner_menu_choice == "2":
                     print("You are now looking for friends!!")
+                    print("here are all the people: "+ str(ai_social_network.list_of_usernames))
                     newFriendUsername = input("Who do you want to befriend?\n")
-                    CurrentUser.add_friend(newFriendUsername)
+                    friendIndex = ai_social_network.list_of_usernames.index(newFriendUsername)
+                    newFriendPerson = ai_social_network.list_of_people[friendIndex]
+                    CurrentUser.add_friend(newFriendPerson, newFriendUsername)
+                    inner_menu_choice = social_network_ui.manageAccountMenu()
+                elif inner_menu_choice == "3":
+                    print("here are your friends: "+ str(CurrentUser.friendlistUsernames))
+                    inner_menu_choice = social_network_ui.manageAccountMenu()
+                    
+                elif inner_menu_choice == "4":
+                    recipient = input("who do you wanna send the message to?\n")  
+                    premessage = input("what is the message?\n")
+                    message = premessage+" -"+username
+                    friendIndex = ai_social_network.list_of_usernames.index(recipient)
+                    toFriend = ai_social_network.list_of_people[friendIndex]
+                    toFriend.inbox.append(message)
+                    print(str(toFriend.inbox))
+                    inner_menu_choice = social_network_ui.manageAccountMenu()
+                elif inner_menu_choice == "5":
+                    print(str(CurrentUser.friendlistUsernames))
+                    block = input("who do you wanna block?\n")
+                    blockIndex = CurrentUser.friendlist.index(block)
+                    CurrentUser.friendlist.pop(blockIndex)
+                    CurrentUser.friendlistUsernames.pop(blockIndex)
+                    inner_menu_choice = social_network_ui.manageAccountMenu()
+                    print(str(CurrentUser.friendlistUsernames))
+                elif inner_menu_choice == "6":
+                    print("here are your messages: " + str(CurrentUser.inbox))
+                    inner_menu_choice = social_network_ui.manageAccountMenu()
+
+
 
 
         elif choice == "3":
