@@ -19,7 +19,17 @@ class SocialNetwork:
         pass
 
     def  create_account(self):
-        username = input("Let's make an account!\nWhat is your new username?\n")
+        
+        validmessage = True
+        while validmessage == True:
+            username = input("Let's make an account!\nWhat is your new username?\n")
+            for i in self.list_of_usernames:
+                if(i == username):
+                    print("already taken")
+                    validmessage = True
+                else:
+                    
+                    validmessage = False
         age = input("And what is your age?\n")
         mainAccount = Person(username, age)
         self.list_of_people.append(mainAccount)
