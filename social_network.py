@@ -19,6 +19,7 @@ if __name__ == "__main__":
     while True: 
         if choice == "1":
             print("\nYou are now in the create account menu")
+            
             ai_social_network.create_account()
             
 
