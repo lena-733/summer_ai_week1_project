@@ -23,7 +23,16 @@ if __name__ == "__main__":
             
 
         elif choice == "2":
-            mainUsername = input("Hey what's your username?\n")
+            valid = True
+            while valid == True:
+                mainUsername = input("Hey what's your username?\n")
+                for i in ai_social_network.list_of_usernames:
+                    if(i == mainUsername):
+                        valid = False
+                    else:
+                        print("not valid")
+                        valid = True
+
             CurrentUser = ai_social_network.main_user(mainUsername)
             inner_menu_choice = social_network_ui.manageAccountMenu()
             #Handle inner menu here
@@ -34,13 +43,21 @@ if __name__ == "__main__":
                     break
                 elif inner_menu_choice == "1":
                     username =input("\nYou are now editing an account\nWhat is your username\n")
-                    ai_social_network.edit_account(username)
+                    ai_social_network.edit_account(CurrentUser)
                     
                     inner_menu_choice = social_network_ui.manageAccountMenu()
                 elif inner_menu_choice == "2":
                     print("You are now looking for friends!!")
                     print("here are all the people: "+ str(ai_social_network.list_of_usernames))
-                    newFriendUsername = input("Who do you want to befriend?\n")
+                    validfriend = True
+                    while validfriend == True:
+                        newFriendUsername = input("Who do you want to befriend?\n")
+                        for i in ai_social_network.list_of_usernames:
+                            if(i == newFriendUsername):
+                                validfriend = False
+                            else:
+                                print("not valid")
+                                validfriend = True
                     friendIndex = ai_social_network.list_of_usernames.index(newFriendUsername)
                     newFriendPerson = ai_social_network.list_of_people[friendIndex]
                     CurrentUser.add_friend(newFriendPerson, newFriendUsername)
@@ -48,9 +65,18 @@ if __name__ == "__main__":
                 elif inner_menu_choice == "3":
                     print("here are your friends: "+ str(CurrentUser.friendlistUsernames))
                     inner_menu_choice = social_network_ui.manageAccountMenu()
-                    
+
                 elif inner_menu_choice == "4":
-                    recipient = input("who do you wanna send the message to?\n")  
+                    validmessage = True
+                    while validmessage == True:
+                        recipient = input("who do you wanna send the message to?\n")
+                        for i in ai_social_network.list_of_usernames:
+                            if(i == recipient):
+                                validmessage = False
+                            else:
+                                print("not valid")
+                                validmessage = True
+
                     premessage = input("what is the message?\n")
                     message = premessage+" -"+username
                     friendIndex = ai_social_network.list_of_usernames.index(recipient)
@@ -60,7 +86,16 @@ if __name__ == "__main__":
                     inner_menu_choice = social_network_ui.manageAccountMenu()
                 elif inner_menu_choice == "5":
                     print(str(CurrentUser.friendlistUsernames))
-                    block = input("who do you wanna block?\n")
+                    validblock = True
+                    while validblock == True:
+                        block = input("who do you wanna block?\n")
+                        for i in ai_social_network.list_of_usernames:
+                            if(i == block):
+                                validblock = False
+                            else:
+                                print("not valid")
+                                validblock = True
+                    
                     blockIndex = CurrentUser.friendlist.index(block)
                     CurrentUser.friendlist.pop(blockIndex)
                     CurrentUser.friendlistUsernames.pop(blockIndex)

@@ -29,8 +29,8 @@ class SocialNetwork:
         #create instance of person object
         pass
     
-    def edit_account(self, username):
-        index = self.list_of_usernames.index(username)
+    def edit_account(self, person):
+        index = self.list_of_people.index(person)
         newName = input("What new username?\n")
         newAge = input("What new age?\n")
         editAccount = Person(newName, newAge)
