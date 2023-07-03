@@ -59,8 +59,3 @@ class Person:
 
         #implement adding friend. Hint add to self.friendlist
         pass
-
-    def send_message(self, friend_name, message):
-        #implement sending message to friend here
-        #access list of people and then add to their inbox
-        pass
