@@ -8,8 +8,8 @@ class SocialNetwork:
         
     ## For more challenge try this
     def save_social_media(self):
-        json.dumps(SocialNetwork)
-        json.dumps(Person)
+        for i in self.list_of_people:
+            json.dumps(i.__dic__)
 
         # function to save social media to a file on disk 
         # hint: look up how to use python's inbuil json module to turn objects to json

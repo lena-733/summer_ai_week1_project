@@ -20,15 +20,14 @@ if __name__ == "__main__":
     while True: 
         if choice == "1":
             print("\nYou are now in the create account menu")
-            usernameinput = input("create a username\n")
-            #validusername = True
-            #while validusername == True:
-                #usernameinput = input("create a username\n")
-                #if usernameinput in ai_social_network.list_of_usernames:
-                    #print("already in use")
-                    #validusername = True
-                #else:
-                    #validusername = False
+            validusername1 = True
+            while validusername1 == True:
+                usernameinput = input("create a username\n")
+                if usernameinput in ai_social_network.list_of_usernames:
+                    print("already in use")
+                    validusername1 = True
+                else:
+                    validusername1 = False
 
             ai_social_network.create_account(usernameinput)
             
