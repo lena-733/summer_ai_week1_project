@@ -18,18 +18,7 @@ class SocialNetwork:
         # hint: load a the json file from disk and look up how to recreate the list of people objects.
         pass
 
-    def  create_account(self):
-        
-        validmessage = True
-        while validmessage == True:
-            username = input("Let's make an account!\nWhat is your new username?\n")
-            for i in self.list_of_usernames:
-                if(i == username):
-                    print("already taken")
-                    validmessage = True
-                else:
-                    
-                    validmessage = False
+    def  create_account(self, username):
         age = input("And what is your age?\n")
         mainAccount = Person(username, age)
         self.list_of_people.append(mainAccount)

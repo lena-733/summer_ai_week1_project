@@ -16,21 +16,30 @@ if __name__ == "__main__":
     last_menu = None
     choice = social_network_ui.mainMenu()
 
+
     while True: 
         if choice == "1":
             print("\nYou are now in the create account menu")
-            
-            ai_social_network.create_account()
+            usernameinput = input("create a username\n")
+            #validusername = True
+            #while validusername == True:
+                #usernameinput = input("create a username\n")
+                #if usernameinput in ai_social_network.list_of_usernames:
+                    #print("already in use")
+                    #validusername = True
+                #else:
+                    #validusername = False
+
+            ai_social_network.create_account(usernameinput)
             
 
         elif choice == "2":
             valid = True
             while valid == True:
                 mainUsername = input("Hey what's your username?\n")
-                for i in ai_social_network.list_of_usernames:
-                    if(i == mainUsername):
+                if mainUsername in ai_social_network.list_of_usernames:
                         valid = False
-                    else:
+                else:
                         print("not valid")
                         valid = True
 
@@ -43,7 +52,7 @@ if __name__ == "__main__":
                 if inner_menu_choice == "7":
                     break
                 elif inner_menu_choice == "1":
-                    username =input("\nYou are now editing an account\nWhat is your username\n")
+
                     ai_social_network.edit_account(CurrentUser)
                     
                     inner_menu_choice = social_network_ui.manageAccountMenu()
@@ -73,13 +82,14 @@ if __name__ == "__main__":
                         recipient = input("who do you wanna send the message to?\n")
                         for i in ai_social_network.list_of_usernames:
                             if(i == recipient):
+                                
                                 validmessage = False
                             else:
                                 print("not valid")
                                 validmessage = True
 
                     premessage = input("what is the message?\n")
-                    message = premessage+" -"+username
+                    message = premessage+" -"+ CurrentUser.id
                     friendIndex = ai_social_network.list_of_usernames.index(recipient)
                     toFriend = ai_social_network.list_of_people[friendIndex]
                     toFriend.inbox.append(message)
@@ -97,7 +107,7 @@ if __name__ == "__main__":
                                 print("not valid")
                                 validblock = True
                     
-                    blockIndex = CurrentUser.friendlist.index(block)
+                    blockIndex = CurrentUser.friendlistUsernames.index(block)
                     CurrentUser.friendlist.pop(blockIndex)
                     CurrentUser.friendlistUsernames.pop(blockIndex)
                     inner_menu_choice = social_network_ui.manageAccountMenu()
