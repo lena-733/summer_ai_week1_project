@@ -62,12 +62,11 @@ if __name__ == "__main__":
                     validfriend = True
                     while validfriend == True:
                         newFriendUsername = input("Who do you want to befriend?\n")
-                        for i in ai_social_network.list_of_usernames:
-                            if(i == newFriendUsername):
-                                validfriend = False
-                            else:
-                                print("not valid")
-                                validfriend = True
+                        if newFriendUsername in ai_social_network.list_of_usernames:
+                            validfriend = False
+                        else:
+                            print("not valid")
+                            validfriend = True
                     friendIndex = ai_social_network.list_of_usernames.index(newFriendUsername)
                     newFriendPerson = ai_social_network.list_of_people[friendIndex]
                     CurrentUser.add_friend(newFriendPerson, newFriendUsername)
@@ -80,13 +79,11 @@ if __name__ == "__main__":
                     validmessage = True
                     while validmessage == True:
                         recipient = input("who do you wanna send the message to?\n")
-                        for i in ai_social_network.list_of_usernames:
-                            if(i == recipient):
-                                
-                                validmessage = False
-                            else:
-                                print("not valid")
-                                validmessage = True
+                        if recipient in ai_social_network.list_of_usernames:
+                            validmessage = False
+                        else:
+                            print("not valid")
+                            validmessage = True
 
                     premessage = input("what is the message?\n")
                     message = premessage+" -"+ CurrentUser.id
@@ -100,10 +97,10 @@ if __name__ == "__main__":
                     validblock = True
                     while validblock == True:
                         block = input("who do you wanna block?\n")
-                        for i in ai_social_network.list_of_usernames:
-                            if(i == block):
+                        if block in ai_social_network.list_of_usernames:
+                            
                                 validblock = False
-                            else:
+                        else:
                                 print("not valid")
                                 validblock = True
                     
