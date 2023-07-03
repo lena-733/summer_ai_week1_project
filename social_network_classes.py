@@ -1,6 +1,13 @@
 # A class to hold general system wide social media data and functions. Eg Data objects of all people, Eg functions: Save social media to disk
 import json
 import os
+
+
+d = {}
+
+
+
+
 class SocialNetwork:
     def __init__(self):
         self.list_of_people = []
@@ -9,16 +16,15 @@ class SocialNetwork:
         
     ## For more challenge try this
     def save_social_media(self):
-        for i in self.list_of_people:
-            i.serialize()
-            data = json.dumps(i) # Convert the response to JSON
-            with open("savedinfo.json", "w") as file:
-                json.dump(data, file)
-        
-        for e in self.list_of_usernames:
-            datausernames = json.dumps(e)
-            with open("savedusernames.json", "w") as file2:
-                json.dump(datausernames, file2)
+        for idx in range(len(self.list_of_usernames)):
+
+            username = self.list_of_usernames[idx]
+            ps = self.list_of_people[idx]
+            d[username]=ps.__dict__
+        json_object = json.dumps(d)
+
+        with open("savedinfo.json", "w") as outfile:
+            outfile.write(json_object)
 
         #f = open(savedinformation.txt)
         #for i in self.list_of_people:
@@ -32,18 +38,14 @@ class SocialNetwork:
 
     ## For more challenge try this
     def reload_social_media(self):
-        # function to load saved social media from file on disk 
-        # hint: load a the json file from disk and look up how to recreate the list of people objects.
-        with open("savedinfo.json", "r") as file:
-            data = json.load(file)
-
+        with open('savedinfo.json', 'r') as openfile:
+    # Reading from json file
+            json_object = json.load(openfile)
+        self.list_of_people = list(json_object.values())
+        self.list_of_usernames = list(json_object.keys())
+        print(str(self.list_of_usernames))
 # Access and process the retrieved JSON data
-        self.list_of_people = data["data"]["list_of_people"]
-        with open("savedusernames.json", "r") as file2:
-            data2 = json.load(file)
-        self.list_of_usernames = data2["data2"]["list_of_usernames"]
-        pass
-
+        
     def  create_account(self, username):
         age = input("And what is your age?\n")
         mainAccount = Person(username, age)
