@@ -113,7 +113,10 @@ if __name__ == "__main__":
                     inner_menu_choice = social_network_ui.manageAccountMenu()
 
 
-
+        elif choice == "4":
+             ai_social_network.save_social_media()
+        elif choice == "5":
+             ai_social_network.reload_social_media()
 
         elif choice == "3":
             print("Thank you for visiting. Goodbye")
